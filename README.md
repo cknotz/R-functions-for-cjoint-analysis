@@ -1,11 +1,14 @@
 # R-functions-for-cjoint-analysis
 
+This repository provides two functions for R that run diagnostic checks on data from conjoint survey experiments. The functions complement the `cjoint`-package.
+
+For more information on conjoint experiments and the `cjoint`-package, see Hainmueller, Hopkins, Yamamoto. 2014. 'Causal Inference in Conjoint Analysis: Understanding Multidimensional Choices via Stated Preference Experiments' *Political Analysis* 22:1-30.
+
 ## cjointWaldTest
 
-This function computes a Wald-test to test for carryover effects in data from conjoint survey experiments.
+This function computes a Wald-test to test for carryover effects in data from rating-based conjoint survey experiments.
 
-It runs a linear regression (with standard errors clustered by respondents) including all vignette attributes interacted with an ID for the task number and then uses a Wald-test to test for the joint significance of the interaction terms. A rejected null indicates carryover effects
-(see Hainmueller, Hopkins, Yamamoto. 2014. 'Causal Inference in Conjoint Analysis: Understanding Multidimensional Choices via Stated Preference Experiments' *Political Analysis* 22:1-30 for details on conjoint analysis and carryover effects).
+It runs a linear regression (with standard errors clustered by respondents) including all vignette attributes interacted with an ID for the task number as predictors and then uses a Wald-test to test for the joint significance of the interaction terms. A rejected null indicates carryover effects.
 
 It takes as arguments:
 * `data`: A data.frame
@@ -16,3 +19,15 @@ It takes as arguments:
 
 ### Example:
 `cjointWaldTest(data=experimentdata, attributes=c("gender","age","income","education"),outcome="rating",task="taskID",idvar="resID")`
+
+## cjointRandoTest
+
+This function checks data from conjoint experiments for randomization problems. Specifically, it performs chi-squared tests on contingency tables of combinations of respondent-variables and vignette attributes. If randomization was successful, there should be no association between respondent characteristics and vignette attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some vignette attributes, which can result from problems with the randomization of attributes across profiles.
+
+The function takes as arguments:
+* `data`: A data.frame
+* `resvars`: A character vector of respondent characteristics
+* `dims`: A character vector of profile attributes/dimensions
+
+### Example:
+`cjointRandoTest(data=experimentdata,resvars("age_respondent","gender_respondent"),dims=c("age","gender","income"))`
