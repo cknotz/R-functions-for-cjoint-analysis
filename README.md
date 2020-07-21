@@ -4,7 +4,7 @@ This repository provides two functions for R that run diagnostic checks on data 
 
 For more information on conjoint experiments and the `cjoint`-[package](https://rdrr.io/cran/cjoint/man/cjoint-package.html), see Hainmueller, Hopkins, and Yamamoto. 2014. 'Causal Inference in Conjoint Analysis: Understanding Multidimensional Choices via Stated Preference Experiments' *Political Analysis* 22:1-30.
 
-## cjointWaldTest
+## cjointWaldTest()
 
 This function checks the data for carryover effects (which can arise when respondents base their evaluation of one vignette on their evaluation of previous ones).
 
@@ -20,7 +20,7 @@ It takes as arguments:
 ### Example:
 `cjointWaldTest(data=experimentdata, attributes=c("gender","age","income","education"),outcome="rating",task="taskID",idvar="resID")`
 
-## cjointRandoTest
+## cjointRandoTest()
 
 This function checks data from conjoint experiments for randomization problems. Specifically, it performs chi-squared tests on contingency tables of combinations of respondent-variables and vignette attributes. If randomization was successful, there should be no association between respondent characteristics and vignette attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some vignette attributes, which can result from problems with the randomization of attributes across profiles.
 
