@@ -8,12 +8,11 @@ For more information on conjoint experiments and the `cjoint`-[package](https://
 
 This function checks the data for carryover effects (which can arise when respondents base their evaluation of one vignette on their evaluation of previous ones).
 
-The function runs a linear regression (with standard errors clustered by respondents) including all vignette attributes interacted with an ID for the task number as predictors, and then estimates a Wald-test to test for the joint significance of the interaction terms. A rejected null indicates carryover effects are present.
+The function runs a linear regression including all vignette attributes interacted with an ID for the task number as predictors, and then estimates a Wald-test to test for the joint significance of the interaction terms. A rejected null indicates carryover effects are present.
 
 It takes as arguments:
 * `data`: A data.frame
 * `attributes`: A character vector of vignette attributes
-* `idvar`: The respondent ID variable, a string
 * `task`: The task-ID. This should be a factor in the data, but is entered here as a string
 * `outcome`: The outcome variable, entered as a string
 
