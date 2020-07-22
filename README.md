@@ -31,5 +31,3 @@ The function takes as arguments:
 
 ### Example:
 `cjointRandoTest(data=experimentdata,resvars("age_respondent","gender_respondent"),dims=c("age","gender","income"))`
-
-### Test
