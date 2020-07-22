@@ -4,7 +4,7 @@ This repository provides two functions for R that run diagnostic checks on data 
 
 For more information on conjoint experiments and the `cjoint`-[package](https://rdrr.io/cran/cjoint/man/cjoint-package.html), see Hainmueller, Hopkins, and Yamamoto. 2014. 'Causal Inference in Conjoint Analysis: Understanding Multidimensional Choices via Stated Preference Experiments' *Political Analysis* 22:1-30.
 
-## cjointWaldTest()
+## cjointCarryTest()
 
 This function checks the data for carryover effects (which can arise when respondents base their evaluation of one vignette on their evaluation of previous ones).
 
@@ -17,7 +17,7 @@ It takes as arguments:
 * `outcome`: The outcome variable, entered as a string
 
 ### Example:
-`cjointWaldTest(data=experimentdata, attributes=c("gender","age","income","education"),outcome="rating",task="taskID",idvar="resID")`
+`cjointCarryTest(data=experimentdata, attributes=c("gender","age","income","education"),outcome="rating",task="taskID",idvar="resID")`
 
 ## cjointRandoTest()
 

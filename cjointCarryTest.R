@@ -1,4 +1,4 @@
-cjointWaldTest <- function(data,outcome,attributes,task){
+cjointCarryTest <- function(data,outcome,attributes,task){
   if (!require("aod")) install.packages("aod")
 
 # Constructs model equation
