@@ -29,4 +29,4 @@ The function takes as arguments:
 * `dims`: A character vector of profile attributes/dimensions
 
 ### Example:
-`cjointRandoTest(data=experimentdata,resvars("age_respondent","gender_respondent"),dims=c("age","gender","income"))`
+`cjointRandoTest(data=experimentdata,resvars=c("age_respondent","gender_respondent"),dims=c("age","gender","income"))`
