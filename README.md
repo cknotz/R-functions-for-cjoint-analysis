@@ -17,7 +17,7 @@ It takes as arguments:
 * `outcome`: The outcome variable, entered as a string
 
 ### Example:
-`cjointCarryTest(data=experimentdata, attributes=c("gender","age","income","education"),outcome="rating",task="taskID",idvar="resID")`
+`cjointCarryTest(data=experimentdata, attributes=c("gender","age","income","education"),outcome="rating",task="taskID")`
 
 ## cjointRandoTest()
 
