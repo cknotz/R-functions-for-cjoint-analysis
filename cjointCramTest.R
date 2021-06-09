@@ -1,4 +1,4 @@
-cjointAssocMat <- function(data,dims,labels=NULL) {
+cjointCramTest <- function(data,dims,labels=NULL) {
     if(!require(rcompanion)) install.packages("rcompanion")
         
     cramtest <- invisible(sapply(dims,function(y){
