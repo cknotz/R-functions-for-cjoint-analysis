@@ -42,6 +42,9 @@ The function takes as arguments:
 * `dims`: A character vector of vignette attributes' names in the dataset
 * `labels`: Optional. A character vector of labels for the vignette attributes (the order must correspond to the one in `dims`!)
 
+### Example:
+`cjointChiTest(data=experimentdata,dims=("age","nationality","gender"))`
+
 ## cjointCramTest()
 
 This function complements the `cjointChiTest()` function. Whereas the `cjointChiTest()` function assesses the _statistical significance_ of any inter-attribute associations, the `cjointCramTest()` function assesses how strong this association is. The function cross-tabulates all combinations of vignette attributes and computes Cramer's V statistics. These are a measure of strongly two categorical variables are associated, where 0 indicates no association and 1 perfect association (similar to Pearson's correlation coefficient). The function computes these tests and arranges the test statistics into a matrix. The matrix can optionally be labeled.
@@ -50,3 +53,6 @@ The function takes as arguments:
 * `data`: A data.frame
 * `dims`: A character vector of vignette attributes' names in the dataset
 * `labels`: Optional. A character vector of labels for the vignette attributes (the order must correspond to the one in `dims`!)
+
+### Example:
+`cjointCramtTest(data=experimentdata,dims=("age","nationality","gender"))`
