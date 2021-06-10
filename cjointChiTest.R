@@ -7,5 +7,5 @@ cjointChiTest <- function(data,dims,labels=NULL) {
     if(!is.null(labels)){
         dimnames(chimat) <- list(labels,labels)}
     chimat[upper.tri(chimat)] <- NA
-    print(chimat)
+    return(chimat)
 }
