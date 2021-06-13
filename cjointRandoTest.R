@@ -6,6 +6,6 @@ cjointRandoTest <- function(data, resvars, dims,reslabs=NULL,dimlabs=NULL) {
     }))
     if(!is.null(reslabs) & !is.null(dimlabs)){
         dimnames(rand) <- list(dimlabs,reslabs)}
+    cat("\n P-values from chi-squared tests on bivariate cross-tabulations of \n respondent-variables and profile attributes.")
     print(rand)
-    cat("\n P-values from chi-squared tests on bivariate cross-tabulation of \n respondent-variables and profile attributes.")
 }

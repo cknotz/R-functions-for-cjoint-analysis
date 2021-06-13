@@ -23,15 +23,21 @@ It takes as arguments:
 
 ## cjointRandoTest()
 
-This function checks data from conjoint experiments for randomization problems. Specifically, it performs chi-squared tests on contingency tables of combinations of respondent-variables and vignette attributes. If randomization was successful, there should be no association between respondent characteristics and vignette attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some vignette attributes, which can result from problems with the randomization of attributes across profiles.
+This function checks data from conjoint experiments for randomization problems. Specifically, it performs chi-squared tests on contingency tables of respondent-variables and profile attributes. If the randomization of profiles was successful, there should be no associations between any respondent characteristics and profile attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some profile attributes. This can indicate that there were problems with the randomization of attributes across profiles.
 
 The function takes as arguments:
 * `data`: A data.frame
 * `resvars`: A character vector of respondent characteristics (the names of the corresponding variables in the dataset)
-* `dims`: A character vector of profile attributes' names in the dataset
+* `dims`: A character vector of profile attributes (again, the variables' names in the dataset)
+* `dimlabs`: Optional. A character vector of labels for the profile attributes (Important: the order of the labels must correspond to the order of attributes in `dims`!)
+* `reslabs`: Optional. A character vector of labels for the respondent characteristics (Important: the order of the labels must correspond to the order of attributes in `resvars`!)
 
 ### Example:
-`cjointRandoTest(data=experimentdata,resvars=c("age_respondent","gender_respondent"),dims=c("age","gender","income"))`
+`cjointRandoTest(data=experimentdata,
+  resvars=c("age_respondent","gender_respondent"),
+  dims=c("age","gender","income"),
+  reslabs=c("Age (respondent)","Gender (respondent)"),
+  dimlabs=c("Age","Gender","Income"))`
 
 ## cjointChiTest()
 
@@ -40,7 +46,7 @@ This function checks if any of the vignette dimensions are associated with each 
 The function takes as arguments:
 * `data`: A data.frame
 * `dims`: A character vector of vignette attributes' names in the dataset
-* `labels`: Optional. A character vector of labels for the vignette attributes (the order must correspond to the one in `dims`!)
+* `labels`: Optional. A character vector of labels for the vignette attributes (Important: the order of the labels must correspond to the order of attributes in `dims`!)
 
 ### Example:
 `cjointChiTest(data=experimentdata,dims=("age","nationality","gender"))`
