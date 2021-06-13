@@ -1,19 +1,32 @@
-cjointCarryTest <- function(data,outcome,attributes,task){
-  if (!require("aod")) install.packages("aod")
+cjointCarryTest <- function(data, outcome, attributes, task, resID) {
+    if(!require(clubSandwich)){
+        install.packages("clubSandwich")}
+    cat("\n")
+    message("Running tests, this might take a while...")
+    waldres <- invisible(sapply(attributes,function(x){
 
-# Constructs model equation
-equation <- as.formula(
-  paste(outcome,
-       paste(paste(attributes,task, sep = "*"),collapse = " + "),
-        sep = " ~ "))
+        # Constructs model equation
+        equation <- as.formula(paste(outcome,
+                                     paste(
+                                         paste(x, task, sep = "*"), collapse = " + "
+                                     ),
+                                     sep = " ~ "))
 
-# Runs regression model and saves VarCov matrix
-mod <- lm(formula = equation, data=data)
-  mat <- vcov(mod)
+        # Runs model
+        mod <- lm(formula = equation, data = noquote(data))
 
-# Identifies interaction terms
-terms <- grep(pattern = ":",colnames(mat), value = F)
+        # Identifies interaction terms
+        terms <- grep(pattern = ":", colnames(vcov(mod)), value = F)
 
-# Runs Wald-test on model results
-aod::wald.test(b=coef(mod),Sigma = vcov(mod),Terms = terms)
+        #Adjusts VCOV
+        mod_V <- vcovCR(mod,
+                        cluster = data[[resID]],
+                        type = "CR2")
+
+        #Runs Wald-test on model results
+        Wald_test(mod,
+                  vcov = mod_V,
+                  constraints = constrain_zero(terms))
+    }))
+    return(waldres)
 }
