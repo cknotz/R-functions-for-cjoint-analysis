@@ -1,4 +1,4 @@
-cjointChiTest <- function(data,dims,labels=NULL) {
+cjointRandoTest_II <- function(data,dims,labels=NULL) {
     chimat <- sapply(dims,function(x){
         sapply(dims,function(y){
             round(chisq.test(table(data[[x]],data[[y]]))$p.value,3)
