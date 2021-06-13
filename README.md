@@ -21,9 +21,9 @@ It takes as arguments:
 ### Example:
 `cjointCarryTest(data=experimentdata, attributes=c("gender","age","income","education"),outcome="rating",task="taskID")`
 
-## cjointRandoTest()
+## cjointRandoTest_I()
 
-This function checks data from conjoint experiments for randomization problems. Specifically, it performs chi-squared tests on contingency tables of respondent-variables and profile attributes. If the randomization of profiles was successful, there should be no associations between any respondent characteristics and profile attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some profile attributes. This can indicate that there were problems with the randomization of attributes across profiles.
+This function checks data from conjoint experiments for randomization problems. Specifically, it computes chi-squared tests on contingency tables of respondent-variables and profile attributes. If the randomization of profiles was successful, there should be no associations between any respondent characteristics and profile attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some profile attributes. This can indicate that there were problems with the randomization of attributes across profiles. The output (a matrix) can be labeled.
 
 The function takes as arguments:
 * `data`: A data.frame
@@ -33,15 +33,15 @@ The function takes as arguments:
 * `reslabs`: Optional. A character vector of labels for the respondent characteristics (Important: the order of the labels must correspond to the order of attributes in `resvars`!)
 
 ### Example:
-`cjointRandoTest(data=experimentdata,
+`cjointRandoTest_I(data=experimentdata,
   resvars=c("age_respondent","gender_respondent"),
   dims=c("age","gender","income"),
   reslabs=c("Age (respondent)","Gender (respondent)"),
   dimlabs=c("Age","Gender","Income"))`
 
-## cjointChiTest()
+## cjointRandoTest_II()
 
-This function checks if any of the vignette dimensions are associated with each other. Such associations can occur by mere chance, even if the composition of vignettes is randomized. The function cross-tabulates all combinations of vignette attributes and computes chi-squared tests to test if there are any significant associations between attributes. It then saves the resulting p-values and arranges them into a matrix (similar to to a correlation matrix for metric variables). A rejected null (small p-value) indicates that there is some statistically significant association between vignette attributes. The matrix can optionally be labeled.
+This function checks data from conjoint experiments for randomization problems by checking for associations between any pair of profile attributes. Similar to `cjointRandoTest_I`, it cross-tabulates all combinations of profile attributes and computes chi-squared tests to test if there are any significant associations between these attributes. A rejected null (small p-value) indicates that there is some statistically significant association between profile attributes. The output can be labeled.
 
 The function takes as arguments:
 * `data`: A data.frame
@@ -49,11 +49,11 @@ The function takes as arguments:
 * `labels`: Optional. A character vector of labels for the vignette attributes (Important: the order of the labels must correspond to the order of attributes in `dims`!)
 
 ### Example:
-`cjointChiTest(data=experimentdata,dims=("age","nationality","gender"))`
+`cjointRandoTest_II(data=experimentdata,dims=("age","nationality","gender"))`
 
 ## cjointCramTest()
 
-This function complements the `cjointChiTest()` function. Whereas the `cjointChiTest()` function assesses the _statistical significance_ of any inter-attribute associations, the `cjointCramTest()` function assesses how strong this association is. The function cross-tabulates all combinations of vignette attributes and computes Cramer's V statistics. These are a measure of strongly two categorical variables are associated, where 0 indicates no association and 1 perfect association (similar to Pearson's correlation coefficient). The function computes these tests and arranges the test statistics into a matrix. The matrix can optionally be labeled.
+This function complements the `cjointRandoTest_II()` function. Whereas the `cjointRandoTest_II()` function assesses the _statistical significance_ of any inter-attribute associations, the `cjointCramTest()` function assesses how strong these associations are. The function cross-tabulates all combinations of vignette attributes and computes Cramer's V statistics, which are a measure of strongly two categorical variables are associated. 0 indicates no association and 1 perfect association (similar to Pearson's correlation coefficient). The function computes these tests and arranges the test statistics into a matrix. The output can be labeled.
 
 The function takes as arguments:
 * `data`: A data.frame
