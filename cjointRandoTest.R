@@ -1,9 +1,11 @@
-cjointRandoTest <- function(data,resvars,dims) {
-
-invisible(sapply(resvars,function(x){
-  invisible(sapply(dims, function(y){
-    test <- chisq.test(table(data[[x]],data[[y]]))
-        cat(paste0("\nRespondent variable = ",x,"; Profile variable = ",y,";\n Chi-sq.:",round(test$statistic, digits = 3),"; df = ",test$parameter, "; p-value = ",round(test$p.value,3)))
-  }))
-}))
+cjointRandoTest <- function(data, resvars, dims,reslabs=NULL,dimlabs=NULL) {
+    rand <- invisible(sapply(resvars, function(x) {
+        invisible(sapply(dims, function(y) {
+            as.matrix(round(chisq.test(table(data[[x]], data[[y]]))$p.value,3))
+        }))
+    }))
+    if(!is.null(reslabs) & !is.null(dimlabs)){
+        dimnames(rand) <- list(dimlabs,reslabs)}
+    print(rand)
+    cat("\n P-values from chi-squared tests on bivariate cross-tabulation of \n respondent-variables and profile attributes.")
 }
