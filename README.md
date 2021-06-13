@@ -23,7 +23,7 @@ It takes as arguments:
 
 ## cjointRandoTest_I()
 
-This function checks data from conjoint experiments for randomization problems. Specifically, it computes chi-squared tests on contingency tables of respondent-variables and profile attributes. If the randomization of profiles was successful, there should be no associations between any respondent characteristics and profile attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some profile attributes. This can indicate that there were problems with the randomization of attributes across profiles. The output (a matrix) can be labeled.
+This function checks data from conjoint experiments for randomization problems. Specifically, it computes chi-squared tests on contingency tables of respondent-level characteristics and profile attributes. If the randomization of profiles was successful, there should be no associations between any respondent-level characteristics and profile attributes. A rejected null, on the other hand, indicates that some groups of respondents were more likely to be presented with some profile attributes. This can indicate that there were problems with the randomization of attributes across profiles. The output (a matrix) can be labeled.
 
 The function takes as arguments:
 * `data`: A data.frame
