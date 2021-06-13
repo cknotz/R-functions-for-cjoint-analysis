@@ -10,7 +10,7 @@ All this is currently work in progress.
 
 This function checks the data for carryover effects (which can arise when respondents base their evaluation of one vignette on their evaluation of previous ones).
 
-The function runs linear regression models including one vignette attribute at a time interacted with an ID for the task number as predictors, applies cluster-robust standard errors, and then estimates a Wald-test to test for the joint significance of the interaction terms. A rejected null indicates carryover effects are present. For details, see Hainmueller et al. (2014, 22).
+The function runs linear regression models including one vignette attribute at a time interacted with an ID for the task number as predictors, applies cluster-robust standard errors, and then estimates a Wald-test to test for the joint significance of the interaction terms. A rejected null indicates carryover effects are present (see also Hainmueller et al. 2014, 22). This function relies on the `Wald_test()` function from the `ClubSandwich` package (see [here](https://cran.r-project.org/web/packages/clubSandwich/vignettes/Wald-tests-in-clubSandwich.html#testing-an-interaction) for details).
 
 It takes as arguments:
 * `data`: A data.frame
